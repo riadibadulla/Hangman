@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 // The game state
-public class GameState {
+public class GamePlay {
 	private String wordToBeGuessed;
 	private int numberOfGuessesMade;
 	private int numberOfWrongGuessesRemaining;
@@ -15,7 +15,7 @@ public class GameState {
 
 	public Scanner scanner = new Scanner(System.in).useDelimiter("\n");
 
-	public GameState(String target, int numberOfMaximumWrongGuesses, int numberOfMaximumHints) {
+	public GamePlay(String target, int numberOfMaximumWrongGuesses, int numberOfMaximumHints) {
 		this.wordToBeGuessed = target ;
 		listOfNotGuessedCharacters = new ArrayList<Character>();
 		listOfGuessedCharacters = new ArrayList<Character>();

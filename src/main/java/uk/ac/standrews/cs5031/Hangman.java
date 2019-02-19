@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Hangman {
 
-	public static void doStuff(Scanner sc, CommandOpts gameOptions, GameState g) {
+	public static void doStuff(Scanner sc, GameOptions gameOptions, GamePlay g) {
 
 		boolean guessedLetterIscorrect;
 
@@ -16,9 +16,9 @@ public class Hangman {
 
 			System.out.print("Pick a category:");
 
-			g = new GameState(Words.randomWord(sc.nextInt()), gameOptions.getMaxGuesses(), gameOptions.getMaxHints());
+			g = new GamePlay(Words.randomWord(sc.nextInt()), gameOptions.getMaxGuesses(), gameOptions.getMaxHints());
 		} else {
-			g = new GameState(Words.randomWord(gameOptions.getWordSource()), gameOptions.getMaxGuesses(), gameOptions.getMaxHints());
+			g = new GamePlay(Words.randomWord(gameOptions.getWordSource()), gameOptions.getMaxGuesses(), gameOptions.getMaxHints());
 		}
 
 		while (!g.won() && !g.lost()) {
@@ -42,10 +42,10 @@ public class Hangman {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		GameState gamePlay = null;
-		CommandOpts gameOptions;
+		GamePlay gamePlay = null;
+		GameOptions gameOptions;
 
-		gameOptions = new CommandOpts(args);
+		gameOptions = new GameOptions(args);
 
 		doStuff(sc, gameOptions, gamePlay);
 

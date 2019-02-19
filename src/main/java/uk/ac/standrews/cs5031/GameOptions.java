@@ -1,10 +1,10 @@
 package uk.ac.standrews.cs5031;
 
-public class CommandOpts {
+public class GameOptions {
 
 	private int maxGuesses;
 	private int maxHints;
-	
+
 	private String wordSource;
 
 	public int getMaxGuesses(){
@@ -19,7 +19,7 @@ public class CommandOpts {
 		return wordSource;
 	}
 
-	public CommandOpts(String[] args) {
+	public GameOptions(String[] args) {
 		maxGuesses = 10;
 		maxHints = 2;
 
