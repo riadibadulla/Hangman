@@ -26,7 +26,18 @@ public class Hangman {
 
 			System.out.println("Guesses remaining: " + game.getNumberOfWrongGuessesRemaining());
 
-			guessedLetterIscorrect = game.guessLetter();
+			String letter = game.guessLetter();
+			while (letter == "?") {
+				game.hint();
+				letter = game.guessLetter();
+			}
+
+			if (letter.length() > 1) {
+				if (game.guessedWordIsRight(letter)){
+					continue;
+				}
+			}
+			guessedLetterIscorrect = game.guessIsCorrect(letter.toCharArray()[0]);
 
 			if (guessedLetterIscorrect) System.out.println("Good guess!");
 			if (!guessedLetterIscorrect) System.out.println("Wrong guess!");

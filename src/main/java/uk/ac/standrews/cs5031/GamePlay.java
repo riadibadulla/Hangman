@@ -43,6 +43,7 @@ public class GamePlay {
 	}
 
 	public void showWord(String word) {
+		System.out.println(word);
 		for (int i = 0; i < word.length(); ++i) {
 			if (listOfGuessedCharacters.contains(word.toLowerCase().charAt(i))) {
 				System.out.print(word.charAt(i));
@@ -53,28 +54,8 @@ public class GamePlay {
 		System.out.println("");
 		// System.out.println(missing);
 	}
-	
-	public boolean guessLetter() {
-		char letter;
-		
-		System.out.print("Guess a letter or word (? for a hint): ");
-		
-		String inputCharacter = scanner.next().toLowerCase();
-		
-		if (inputCharacter.length() > 1) {
-			if (inputCharacter == wordToBeGuessed) {
-				listOfNotGuessedCharacters.clear();
-				return true;
-			} else return false;
-		}
 
-		letter = inputCharacter.charAt(0);
-		
-		if (letter == '?') {
-			hint();
-			return false;
-		}
-		
+	public boolean guessIsCorrect(char letter){
 		for(int i = 0; i < listOfNotGuessedCharacters.size(); ++i) { // Loop over the not got
 			if (listOfNotGuessedCharacters.get(i) == letter) {
 				listOfNotGuessedCharacters.remove(i);
@@ -87,6 +68,22 @@ public class GamePlay {
 		numberOfGuessesMade++; // One more guess
 		numberOfWrongGuessesRemaining--;
 		return false;
+	}
+
+	public boolean guessedWordIsRight(String wholeWord){
+		if (wholeWord == wordToBeGuessed) {
+			listOfNotGuessedCharacters.clear();
+			return true;
+		} else return false;
+	}
+
+	public String guessLetter() {
+		
+		System.out.print("Guess a letter or word (? for a hint): ");
+		
+		String input = scanner.next().toLowerCase();
+
+		return input;
 	}
 	
 	public boolean won() {
