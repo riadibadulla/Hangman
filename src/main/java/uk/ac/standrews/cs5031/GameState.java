@@ -5,15 +5,15 @@ import java.util.Scanner;
 
 // The game state
 public class GameState {
-	public String wordToBeGuessed;
-	public int numberOfGuessesMade;
-	public int numberOfWrongGuessesRemaining;
-	public int numberOfHintsLeft;
+	private String wordToBeGuessed;
+	private int numberOfGuessesMade;
+	private int numberOfWrongGuessesRemaining;
+	private int numberOfHintsLeft;
 
-	ArrayList<Character> listOfGuessedCharacters;
-	ArrayList<Character> listOfNotGuessedCharacters;
+	private ArrayList<Character> listOfGuessedCharacters;
+	private ArrayList<Character> listOfNotGuessedCharacters;
 
-	public Scanner sc = new Scanner(System.in).useDelimiter("\n");
+	public Scanner scanner = new Scanner(System.in).useDelimiter("\n");
 
 	public GameState(String target, int numberOfMaximumWrongGuesses, int numberOfMaximumHints) {
 		this.wordToBeGuessed = target ;
@@ -30,7 +30,19 @@ public class GameState {
 		this.numberOfHintsLeft = numberOfMaximumHints;
 	}
 
-	void showWord(String word) {
+	public String getWordToBeGuessed(){
+		return wordToBeGuessed;
+	}
+
+	public int getNumberOfGuessesMade(){
+		return numberOfGuessesMade;
+	}
+
+	public int getNumberOfWrongGuessesRemaining(){
+		return numberOfWrongGuessesRemaining;
+	}
+
+	public void showWord(String word) {
 		for (int i = 0; i < word.length(); ++i) {
 			if (listOfGuessedCharacters.contains(word.charAt(i))) {
 				System.out.print(word.charAt(i));
@@ -42,12 +54,12 @@ public class GameState {
 		// System.out.println(missing);
 	}
 	
-	boolean guessLetter() {
+	public boolean guessLetter() {
 		char letter;
 		
 		System.out.print("Guess a letter or word (? for a hint): ");
 		
-		String inputCharacter = sc.next().toLowerCase();
+		String inputCharacter = scanner.next().toLowerCase();
 		
 		if (inputCharacter.length() > 1) {
 			if (inputCharacter == wordToBeGuessed) {
@@ -77,15 +89,15 @@ public class GameState {
 		return false;
 	}
 	
-	boolean won() {
+	public boolean won() {
 		if (listOfNotGuessedCharacters.size() == 0) return true; else return false;
 	}
 
-	boolean lost() {
+	public boolean lost() {
 		if (listOfNotGuessedCharacters.size() > 0 && numberOfWrongGuessesRemaining == 0) return true; else return false;
 	}
 
-	void hint() {
+	public void hint() {
 		if (numberOfHintsLeft == 0) {
 			System.out.println("No more hints allowed");
 		}

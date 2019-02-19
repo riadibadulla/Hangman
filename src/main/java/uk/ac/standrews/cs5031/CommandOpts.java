@@ -2,12 +2,24 @@ package uk.ac.standrews.cs5031;
 
 public class CommandOpts {
 
-	public int maxGuesses;
-	public int maxHints;
+	private int maxGuesses;
+	private int maxHints;
 	
-	String wordSource;
-	
-	CommandOpts(String[] args) {
+	private String wordSource;
+
+	public int getMaxGuesses(){
+		return maxGuesses;
+	}
+
+	public int getMaxHints(){
+		return maxHints;
+	}
+
+	public String getWordSource(){
+		return wordSource;
+	}
+
+	public CommandOpts(String[] args) {
 		maxGuesses = 10;
 		maxHints = 2;
 
