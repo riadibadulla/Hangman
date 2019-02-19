@@ -2,6 +2,7 @@ package uk.ac.standrews.cs5031;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Words {
 
@@ -15,13 +16,15 @@ public class Words {
 			            "Dundee", "Stirling", "Inverness", "Aberdeen", "Falkirk" };
 			
 	private static ArrayList<String> customWords;
+	private static ArrayList<String[]> categories = new ArrayList<String[]>(Arrays.asList(COUNTIES,COUNTRIES,CITIES));
 
-	public static String randomWord(int category) {
-		if (category == 1)
-			return COUNTIES[(int)(Math.random()*9)];
-		if (category == 2)
-			return COUNTRIES[(int)(Math.random()*15)];
-		return CITIES[(int)(Math.random()*10)];
+	public static int getNumberOfCategories(){
+		return categories.size();
+	}
+
+	public static String randomWord(int categoryNumber) {
+		int lengthOfCategory = categories.get(categoryNumber-1).length;
+		return categories.get(categoryNumber-1)[(int)(Math.random()*lengthOfCategory)];
 	}
 	
 	public static String randomWord(String wordsource) {

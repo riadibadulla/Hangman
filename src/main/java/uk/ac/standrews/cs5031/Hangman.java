@@ -9,18 +9,29 @@ public class Hangman {
 		System.out.println("  2. Countries");
 		System.out.println("  3. Cities");
 
-		System.out.print("Pick a category:");
+
 	}
 
+	public static int choseTheCategory(){
+		int result = 0;
+		Scanner sc = new Scanner(System.in);
+
+		do {
+			System.out.print("Pick a category:");
+			result = sc.nextInt();
+		} while (result < 1 || result > Words.getNumberOfCategories());
+
+		return result;
+	}
 
 	public static GamePlay initialGame(GameOptions gameOptions){
 
 		String targetWord;
 		GamePlay game;
-		Scanner sc = new Scanner(System.in);
 		if (!gameOptions.wordSourceIsCustom()) {
 			printOptions();
-			targetWord = Words.randomWord(sc.nextInt());
+			int categoryNumber = choseTheCategory();
+			targetWord = Words.randomWord(categoryNumber);
 		} else {
 			targetWord = Words.randomWord(gameOptions.getWordSource());
 		}
