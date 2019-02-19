@@ -16,14 +16,15 @@ public class Hangman {
 	public static void doStuff(Scanner sc, GameOptions gameOptions, GamePlay game) {
 
 		boolean guessedLetterIscorrect;
+		String targetWord;
 
 		if (!gameOptions.wordSourceIsCustom()) {
 			printOptions();
-			game = new GamePlay(Words.randomWord(sc.nextInt()), gameOptions.getMaxGuesses(), gameOptions.getMaxHints());
+			targetWord = Words.randomWord(sc.nextInt());
 		} else {
-			game = new GamePlay(Words.randomWord(gameOptions.getWordSource()), gameOptions.getMaxGuesses(), gameOptions.getMaxHints());
+			targetWord = Words.randomWord(gameOptions.getWordSource());
 		}
-
+		game = new GamePlay(targetWord, gameOptions.getMaxGuesses(), gameOptions.getMaxHints());
 		while (!game.won() && !game.lost()) {
 			game.showWord(game.getWordToBeGuessed());
 
