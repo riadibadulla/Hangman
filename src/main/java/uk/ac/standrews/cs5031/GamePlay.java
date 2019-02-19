@@ -43,7 +43,7 @@ public class GamePlay {
 	}
 
 	public void showWord(String word) {
-		System.out.println(word);
+		//System.out.println(word);
 		for (int i = 0; i < word.length(); ++i) {
 			if (listOfGuessedCharacters.contains(word.toLowerCase().charAt(i))) {
 				System.out.print(word.charAt(i));
@@ -52,7 +52,6 @@ public class GamePlay {
 			}
 		}
 		System.out.println("");
-		// System.out.println(missing);
 	}
 
 	public boolean guessIsCorrect(char letter){
@@ -71,7 +70,7 @@ public class GamePlay {
 	}
 
 	public boolean guessedWordIsRight(String wholeWord){
-		if (wholeWord == wordToBeGuessed) {
+		if (wholeWord.equals(wordToBeGuessed.toLowerCase())) {
 			listOfNotGuessedCharacters.clear();
 			return true;
 		} else return false;

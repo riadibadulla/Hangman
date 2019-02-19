@@ -32,6 +32,7 @@ public class Hangman {
 				letter = game.guessLetter();
 			}
 
+
 			if (letter.length() > 1) {
 				if (game.guessedWordIsRight(letter)){
 					continue;
