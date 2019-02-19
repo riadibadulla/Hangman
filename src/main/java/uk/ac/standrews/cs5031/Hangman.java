@@ -1,5 +1,6 @@
 package uk.ac.standrews.cs5031;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Hangman {
@@ -8,23 +9,26 @@ public class Hangman {
 		System.out.println("  1. Counties");
 		System.out.println("  2. Countries");
 		System.out.println("  3. Cities");
-
-
 	}
 
 	public static int choseTheCategory(){
-		int result = 0;
+		int inputCategoryNumber = 0;
 		Scanner sc = new Scanner(System.in);
 
 		do {
 			System.out.print("Pick a category:");
-			result = sc.nextInt();
-		} while (result < 1 || result > Words.getNumberOfCategories());
+			try {
+				inputCategoryNumber = sc.nextInt();
+			} catch (InputMismatchException e){
+				inputCategoryNumber = 0;
+				sc.next();
+			}
+		} while (inputCategoryNumber < 1 || inputCategoryNumber > Words.getNumberOfCategories());
 
-		return result;
+		return inputCategoryNumber;
 	}
 
-	public static GamePlay initialGame(GameOptions gameOptions){
+	public static GamePlay initialiseGame(GameOptions gameOptions){
 
 		String targetWord;
 		GamePlay game;
@@ -39,6 +43,15 @@ public class Hangman {
 		return game;
 	}
 
+	public static void printTheResults(GamePlay game){
+		if (game.won()) {
+			System.out.println("Well done!");
+			System.out.println("You took " + game.getNumberOfGuessesMade() + " guesses");
+		} else {
+			System.out.println("You lost! The word was " + game.getNumberOfWrongGuessesRemaining());
+		}
+	}
+
 	public static void playTheGame(GameOptions gameOptions, GamePlay game) {
 		boolean guessedLetterIscorrect;
 
@@ -49,7 +62,7 @@ public class Hangman {
 			System.out.println("Guesses remaining: " + game.getNumberOfWrongGuessesRemaining());
 
 			String letter = game.guessLetter();
-			while (letter == "?") {
+			while (letter.equals("?")) {
 				game.hint();
 				letter = game.guessLetter();
 			}
@@ -66,12 +79,8 @@ public class Hangman {
 			if (!guessedLetterIscorrect) System.out.println("Wrong guess!");
 		}
 
-		if (game.won()) {
-			System.out.println("Well done!");
-			System.out.println("You took " + game.getNumberOfGuessesMade() + " guesses");
-		} else {
-			System.out.println("You lost! The word was " + game.getNumberOfWrongGuessesRemaining());
-		}
+		printTheResults(game);
+
 	}
 
 	public static void main(String[] args) {
@@ -79,7 +88,7 @@ public class Hangman {
 
 		gameOptions = new GameOptions(args);
 
-		GamePlay game = initialGame(gameOptions);
+		GamePlay game = initialiseGame(gameOptions);
 		playTheGame(gameOptions, game);
 
 	}
