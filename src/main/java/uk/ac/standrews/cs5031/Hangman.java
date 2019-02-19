@@ -13,11 +13,11 @@ public class Hangman {
 	}
 
 
-	public static void doStuff(Scanner sc, GameOptions gameOptions, GamePlay game) {
+	public static GamePlay initialGame(GameOptions gameOptions){
 
-		boolean guessedLetterIscorrect;
 		String targetWord;
-
+		GamePlay game;
+		Scanner sc = new Scanner(System.in);
 		if (!gameOptions.wordSourceIsCustom()) {
 			printOptions();
 			targetWord = Words.randomWord(sc.nextInt());
@@ -25,6 +25,13 @@ public class Hangman {
 			targetWord = Words.randomWord(gameOptions.getWordSource());
 		}
 		game = new GamePlay(targetWord, gameOptions.getMaxGuesses(), gameOptions.getMaxHints());
+		return game;
+	}
+
+	public static void playTheGame(GameOptions gameOptions, GamePlay game) {
+		boolean guessedLetterIscorrect;
+
+
 		while (!game.won() && !game.lost()) {
 			game.showWord(game.getWordToBeGuessed());
 
@@ -57,13 +64,12 @@ public class Hangman {
 	}
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		GamePlay gamePlay = null;
 		GameOptions gameOptions;
 
 		gameOptions = new GameOptions(args);
 
-		doStuff(sc, gameOptions, gamePlay);
+		GamePlay game = initialGame(gameOptions);
+		playTheGame(gameOptions, game);
 
 	}
 }
