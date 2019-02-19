@@ -4,18 +4,21 @@ import java.util.Scanner;
 
 public class Hangman {
 
+	public static void printOptions(){
+		System.out.println("  1. Counties");
+		System.out.println("  2. Countries");
+		System.out.println("  3. Cities");
+
+		System.out.print("Pick a category:");
+	}
+
+
 	public static void doStuff(Scanner sc, GameOptions gameOptions, GamePlay game) {
 
 		boolean guessedLetterIscorrect;
 
-		if (gameOptions.getWordSource() == "") {
-
-			System.out.println("  1. Counties");
-			System.out.println("  2. Countries");
-			System.out.println("  3. Cities");
-
-			System.out.print("Pick a category:");
-
+		if (!gameOptions.wordSourceIsCustom()) {
+			printOptions();
 			game = new GamePlay(Words.randomWord(sc.nextInt()), gameOptions.getMaxGuesses(), gameOptions.getMaxHints());
 		} else {
 			game = new GamePlay(Words.randomWord(gameOptions.getWordSource()), gameOptions.getMaxGuesses(), gameOptions.getMaxHints());

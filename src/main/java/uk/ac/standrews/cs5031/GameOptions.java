@@ -19,6 +19,13 @@ public class GameOptions {
 		return wordSource;
 	}
 
+	public boolean wordSourceIsCustom(){
+		if (getWordSource() == ""){
+			return false;
+		}
+		return true;
+	}
+
 	public GameOptions(String[] args) {
 		maxGuesses = 10;
 		maxHints = 2;

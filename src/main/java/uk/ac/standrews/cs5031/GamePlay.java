@@ -43,7 +43,7 @@ public class GamePlay {
 	}
 
 	public void showWord(String word) {
-		//System.out.println(word);
+		System.out.println(word);
 		for (int i = 0; i < word.length(); ++i) {
 			if (listOfGuessedCharacters.contains(word.toLowerCase().charAt(i))) {
 				System.out.print(word.charAt(i));
