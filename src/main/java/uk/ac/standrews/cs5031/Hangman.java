@@ -11,7 +11,7 @@ public class Hangman {
 		System.out.println("  3. Cities");
 	}
 
-	public static int choseTheCategory(){
+	public static int chooseTheCategory(){
 		int inputCategoryNumber = 0;
 		Scanner sc = new Scanner(System.in);
 
@@ -34,10 +34,10 @@ public class Hangman {
 		GamePlay game;
 		if (!gameOptions.wordSourceIsCustom()) {
 			printOptions();
-			int categoryNumber = choseTheCategory();
-			targetWord = Words.randomWord(categoryNumber);
+			int categoryNumber = chooseTheCategory();
+			targetWord = Words.getRandomWord(categoryNumber);
 		} else {
-			targetWord = Words.randomWord(gameOptions.getWordSource());
+			targetWord = Words.getRandomWord(gameOptions.getWordSource());
 		}
 		game = new GamePlay(targetWord, gameOptions.getMaxGuesses(), gameOptions.getMaxHints());
 		return game;

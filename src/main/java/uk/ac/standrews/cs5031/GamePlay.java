@@ -9,11 +9,11 @@ public class GamePlay {
 	private int numberOfGuessesMade;
 	private int numberOfWrongGuessesRemaining;
 	private int numberOfHintsLeft;
-
 	private ArrayList<Character> listOfGuessedCharacters;
 	private ArrayList<Character> listOfNotGuessedCharacters;
 
 	public Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+
 
 	public GamePlay(String target, int numberOfMaximumWrongGuesses, int numberOfMaximumHints) {
 		this.wordToBeGuessed = target ;

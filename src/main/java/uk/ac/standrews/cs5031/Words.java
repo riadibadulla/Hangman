@@ -22,12 +22,12 @@ public class Words {
 		return categories.size();
 	}
 
-	public static String randomWord(int categoryNumber) {
+	public static String getRandomWord(int categoryNumber) {
 		int lengthOfCategory = categories.get(categoryNumber-1).length;
 		return categories.get(categoryNumber-1)[(int)(Math.random()*lengthOfCategory)];
 	}
 	
-	public static String randomWord(String wordsource) {
+	public static String getRandomWord(String wordsource) {
 		String line;
 		customWords = new ArrayList<String>();
 		
