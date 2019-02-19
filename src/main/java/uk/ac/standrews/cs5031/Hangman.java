@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Hangman {
 
-	public static void doStuff(Scanner sc, GameOptions gameOptions, GamePlay g) {
+	public static void doStuff(Scanner sc, GameOptions gameOptions, GamePlay game) {
 
 		boolean guessedLetterIscorrect;
 
@@ -16,27 +16,27 @@ public class Hangman {
 
 			System.out.print("Pick a category:");
 
-			g = new GamePlay(Words.randomWord(sc.nextInt()), gameOptions.getMaxGuesses(), gameOptions.getMaxHints());
+			game = new GamePlay(Words.randomWord(sc.nextInt()), gameOptions.getMaxGuesses(), gameOptions.getMaxHints());
 		} else {
-			g = new GamePlay(Words.randomWord(gameOptions.getWordSource()), gameOptions.getMaxGuesses(), gameOptions.getMaxHints());
+			game = new GamePlay(Words.randomWord(gameOptions.getWordSource()), gameOptions.getMaxGuesses(), gameOptions.getMaxHints());
 		}
 
-		while (!g.won() && !g.lost()) {
-			g.showWord(g.getWordToBeGuessed());
+		while (!game.won() && !game.lost()) {
+			game.showWord(game.getWordToBeGuessed());
 
-			System.out.println("Guesses remaining: " + g.getNumberOfWrongGuessesRemaining());
+			System.out.println("Guesses remaining: " + game.getNumberOfWrongGuessesRemaining());
 
-			guessedLetterIscorrect = g.guessLetter();
+			guessedLetterIscorrect = game.guessLetter();
 
 			if (guessedLetterIscorrect) System.out.println("Good guess!");
 			if (!guessedLetterIscorrect) System.out.println("Wrong guess!");
 		}
 
-		if (g.won()) {
+		if (game.won()) {
 			System.out.println("Well done!");
-			System.out.println("You took " + g.getNumberOfGuessesMade() + " guesses");
+			System.out.println("You took " + game.getNumberOfGuessesMade() + " guesses");
 		} else {
-			System.out.println("You lost! The word was " + g.getNumberOfWrongGuessesRemaining());
+			System.out.println("You lost! The word was " + game.getNumberOfWrongGuessesRemaining());
 		}
 	}
 
