@@ -15,8 +15,8 @@ public class GamePlayTest {
 	Integer[] testingNumbers = {0, 5, 1000, -5, 10, 3};
 	static GamePlay gamePlay;
 
-	@BeforeClass
-	public static void initialiseClass(){
+	@Before
+	public void initialiseClass(){
 		gamePlay = new GamePlay(targetWords[6], 10, 3);
 	}
 
@@ -47,19 +47,25 @@ public class GamePlayTest {
 
 	@Test
 	public void testGuessIsCorrect(){
-		assertEquals(gamePlay.guessIsCorrect('a'), true);
-		assertEquals(gamePlay.guessIsCorrect(' '), false);
+		assertTrue(gamePlay.guessIsCorrect('a'));
+		assertFalse(gamePlay.guessIsCorrect(' '));
 	}
 
 	@Test
 	public void testGussedWordIsRight(){
-		assertEquals(gamePlay.guessedWordIsRight("australia"), true);
-		assertEquals(gamePlay.guessedWordIsRight("Australia"), true);
-		assertEquals(gamePlay.guessedWordIsRight("austrAlia"), true);
-		assertEquals(gamePlay.guessedWordIsRight("austra lia"), false);
-		assertEquals(gamePlay.guessedWordIsRight("australia "), false);
-		assertEquals(gamePlay.guessedWordIsRight(""), false);
-		assertEquals(gamePlay.guessedWordIsRight(null), false);
+		assertTrue(gamePlay.guessedWordIsRight("australia"));
+		assertTrue(gamePlay.guessedWordIsRight("Australia"));
+		assertTrue(gamePlay.guessedWordIsRight("austrAlia"));
+		assertFalse(gamePlay.guessedWordIsRight("austra lia"));
+		assertFalse(gamePlay.guessedWordIsRight("australia "));
+		assertFalse(gamePlay.guessedWordIsRight(""));
+		assertFalse(gamePlay.guessedWordIsRight(null));
 	}
 
+	@Test
+	public void testWon(){
+		gamePlay.setListOfNotGuessedCharacters(new ArrayList<Character>());
+		assertTrue(gamePlay.won());
+
+	}
 }

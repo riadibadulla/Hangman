@@ -10,6 +10,7 @@ public class GameOptionsTest {
 	String[] args2 = { "guesses", "a", "--hints", "4", "words.txt" };
 	String[] args3 = { "--guesses", "2", "--hints", "as", "words.txt" };
 	String[] args4 = { "--guesses", "2", "--hints", "4", "words.txkkjt" };
+	String[] args5 = { "--guesses", "2", "--hints", "4", "" };
 
 	@Test
 	public void optionsTest1() {
@@ -43,6 +44,12 @@ public class GameOptionsTest {
 		assertEquals(opts.getWordSource(), "");
 	}
 
+	@Test
+	public void testWordSourceIsCustom() {
+		GameOptions opts = new GameOptions(args5);
+		assertFalse(opts.wordSourceIsCustom());
+
+	}
 
 
 }
