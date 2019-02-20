@@ -34,14 +34,20 @@ public class GameOptions {
 		
 		for(int i = 0; i < args.length; ++i) {
 			if (args[i].equals("--guesses")) {
-				maxGuesses = Integer.parseInt(args[i+1]);
+				try {
+					maxGuesses = Integer.parseInt(args[i + 1]);
+				} catch(NumberFormatException e){}
 				i++;
 			}
 			else if (args[i].equals("--hints")) {
-				maxHints = Integer.parseInt(args[i+1]);
+				try {
+					maxHints = Integer.parseInt(args[i + 1]);
+				} catch (NumberFormatException e){}
 				i++;
 			}
-			else wordSource = args[i];
+			else if (args[i].endsWith(".txt")){
+				wordSource = args[i];
+			}
 		}
 	}
 }
