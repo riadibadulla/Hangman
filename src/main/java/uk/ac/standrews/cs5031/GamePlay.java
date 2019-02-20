@@ -42,16 +42,20 @@ public class GamePlay {
 		return numberOfWrongGuessesRemaining;
 	}
 
-	public void showWord(String word) {
-		System.out.println(word);
-		for (int i = 0; i < word.length(); ++i) {
-			if (listOfGuessedCharacters.contains(word.toLowerCase().charAt(i))) {
-				System.out.print(word.charAt(i));
+	public void setListOfGuessedCharacters(ArrayList<Character> listOfGuessedCharacters){
+		this.listOfGuessedCharacters = listOfGuessedCharacters;
+	}
+
+	public String showWord() {
+		String outputWord = "";
+		for (int i = 0; i < this.wordToBeGuessed.length(); ++i) {
+			if (listOfGuessedCharacters.contains(this.wordToBeGuessed.toLowerCase().charAt(i))) {
+				outputWord += this.wordToBeGuessed.charAt(i);
 			} else {
-				System.out.print("-");
+				outputWord+= "_";
 			}
 		}
-		System.out.println("");
+		return outputWord;
 	}
 
 	public boolean guessIsCorrect(char letter){
@@ -70,7 +74,7 @@ public class GamePlay {
 	}
 
 	public boolean guessedWordIsRight(String wholeWord){
-		if (wholeWord.equals(wordToBeGuessed.toLowerCase())) {
+		if (wholeWord != null && wholeWord.toLowerCase().equals(wordToBeGuessed.toLowerCase())) {
 			listOfNotGuessedCharacters.clear();
 			return true;
 		} else return false;
@@ -93,7 +97,7 @@ public class GamePlay {
 		if (listOfNotGuessedCharacters.size() > 0 && numberOfWrongGuessesRemaining == 0) return true; else return false;
 	}
 
-	public void hint() {
+	public void giveAHint() {
 		if (numberOfHintsLeft == 0) {
 			System.out.println("No more hints allowed");
 		}

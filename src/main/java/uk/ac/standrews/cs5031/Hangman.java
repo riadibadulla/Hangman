@@ -3,6 +3,10 @@ package uk.ac.standrews.cs5031;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * @author 180029410
+ * Main class which plays the game(Player class)
+ */
 public class Hangman {
 
 	public static void printOptions(){
@@ -43,6 +47,10 @@ public class Hangman {
 		return game;
 	}
 
+	/**
+	 *
+	 * @param game
+	 */
 	public static void printTheResults(GamePlay game){
 		if (game.won()) {
 			System.out.println("Well done!");
@@ -52,18 +60,23 @@ public class Hangman {
 		}
 	}
 
+	/**
+	 * The playing method. Consists of the while loop
+	 * @param gameOptions
+	 * @param game
+	 */
 	public static void playTheGame(GameOptions gameOptions, GamePlay game) {
 		boolean guessedLetterIscorrect;
 
 
 		while (!game.won() && !game.lost()) {
-			game.showWord(game.getWordToBeGuessed());
+			System.out.println(game.showWord());
 
 			System.out.println("Guesses remaining: " + game.getNumberOfWrongGuessesRemaining());
 
 			String letter = game.guessLetter();
 			while (letter.equals("?")) {
-				game.hint();
+				game.giveAHint();
 				letter = game.guessLetter();
 			}
 
