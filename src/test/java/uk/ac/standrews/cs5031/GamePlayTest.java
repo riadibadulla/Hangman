@@ -11,9 +11,9 @@ import java.util.Arrays;
 
 public class GamePlayTest {
 
-	static String[] targetWords = { "Bang bang", "test test", "hello World", "hello 1", "test test test", "geeks2gits", "Australia" };
+	String[] targetWords = { "Bang bang", "test test", "hello World", "hello 1", "test test test", "geeks2gits", "Australia" };
 	Integer[] testingNumbers = {0, 5, 1000, -5, 10, 3};
-	static GamePlay gamePlay;
+	GamePlay gamePlay;
 
 	@Before
 	public void initialiseClass(){

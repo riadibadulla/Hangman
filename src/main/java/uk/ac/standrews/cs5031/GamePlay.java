@@ -14,19 +14,20 @@ public class GamePlay {
 	private Scanner scanner = new Scanner(System.in).useDelimiter("\n");
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 * @param target the word to be guessed
 	 * @param numberOfMaximumWrongGuesses
 	 * @param numberOfMaximumHints
 	 */
 	public GamePlay(String target, int numberOfMaximumWrongGuesses, int numberOfMaximumHints) {
-		this.wordToBeGuessed = target ;
+		this.wordToBeGuessed = target;
 		listOfNotGuessedCharacters = new ArrayList<Character>();		//Not guessed yet
 		listOfGuessedCharacters = new ArrayList<Character>();
 		
-		for(int i = 0; i < target.length( ); ++i) {
-			if (!listOfNotGuessedCharacters.contains(Character.toLowerCase(target.charAt(i))))
-			listOfNotGuessedCharacters.add(Character.toLowerCase(target.charAt(i)));
+		for (int i = 0; i < target.length( ); ++i) {
+			if (!listOfNotGuessedCharacters.contains(Character.toLowerCase(target.charAt(i)))){
+				listOfNotGuessedCharacters.add(Character.toLowerCase(target.charAt(i)));
+			}
 		}
 		
 		this.numberOfGuessesMade = 0; // guesses made
@@ -57,7 +58,7 @@ public class GamePlay {
 	}
 
 	/**
-	 * shows the word with guessed letters
+	 * shows the word with guessed letters.
 	 * @return
 	 */
 	public String showWord() {
@@ -67,7 +68,7 @@ public class GamePlay {
 			if (listOfGuessedCharacters.contains(this.wordToBeGuessed.toLowerCase().charAt(i))) {
 				outputWord += this.wordToBeGuessed.charAt(i);
 			} else {
-				outputWord+= "_";
+				outputWord += "_";
 			}
 		}
 		return outputWord;
@@ -101,11 +102,13 @@ public class GamePlay {
 		if (wholeWord != null && wholeWord.toLowerCase().equals(wordToBeGuessed.toLowerCase())) {
 			listOfNotGuessedCharacters.clear();
 			return true;
-		} else return false;
+		} else {
+			return false;
+		}
 	}
 
 	/**
-	 * Read's the users input
+	 * Read's the users input.
 	 * @return returns entered character or word in String
 	 */
 	public String guessLetter() {
@@ -115,7 +118,7 @@ public class GamePlay {
 
 	/**
 	 * Won
-	 * @return true when the user wins the game
+	 * @return true when the user wins the game.
 	 */
 	public boolean won() {
 		return listOfNotGuessedCharacters.size() == 0;
@@ -123,7 +126,7 @@ public class GamePlay {
 
 	/**
 	 *
-	 * @return false when the user loses the game
+	 * @return false when the user loses the game.
 	 */
 	public boolean lost() {
 		return (listOfNotGuessedCharacters.size() > 0 && numberOfWrongGuessesRemaining == 0);
@@ -137,6 +140,6 @@ public class GamePlay {
 			System.out.println("No more hints allowed");
 		}
 		System.out.print("Try: ");
-		System.out.println(listOfNotGuessedCharacters.get((int)(Math.random()*listOfNotGuessedCharacters.size())));
+		System.out.println(listOfNotGuessedCharacters.get((int) (Math.random() * listOfNotGuessedCharacters.size())));
 	}
 }
