@@ -10,6 +10,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
+/**
+ * Hangman Tests.
+ * printl test
+ */
 public class HangmanTest {
 
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();

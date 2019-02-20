@@ -9,6 +9,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Tests GamePlay.
+ * tests using different target words...
+ */
 public class GamePlayTest {
 
 	String[] targetWords = { "Bang bang", "test test", "hello World", "hello 1", "test test test", "geeks2gits", "Australia" };

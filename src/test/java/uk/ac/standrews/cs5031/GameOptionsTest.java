@@ -4,6 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * GameOptions tests.
+ * Tests using different application parameters
+ */
 public class GameOptionsTest {
 
 	String[] args = { "--guesses", "2", "--hints", "4", "words.txt" };
